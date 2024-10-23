@@ -14,7 +14,8 @@
                         <th>{{ __('Estimated Duration') }}</th>
                         <th>{{ __('Score') }}</th>
                         <th>{{ __('Duration For Developer') }}</th>
-                        <th>{{ __('Developer') }}</th>
+                        <th>{{ __('Developer Id') }}</th>
+                        <th>{{ __('Sprint Id') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,9 +28,23 @@
                                 <td>{{ $task->score }}</td>
                                 <td>{{ $task->duration_for_developer }}</td>
                                 <td>{{ $task->developer_id }}</td>
+                                <td>{{ $task->sprint_id }}</td>
                             </tr>
                         @endforeach
                     </tbody>
+                    <tfoot>
+
+                        <tr>
+                            <th colspan="2">{{ __('Total') }}</th>
+                            <th>{{ $tasks->sum('difficulty') }}</th>
+                            <th>{{ $tasks->sum('estimated_duration') }}</th>
+                            <th>{{ $tasks->sum('score') }}</th>
+                            <th>{{ $tasks->sum('duration_for_developer') }}</th>
+                            <th></th>
+                            <th></th>
+
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
             </div>
@@ -57,6 +72,14 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+
+                            <tr></tr>
+                                <th colspan="2">{{ __('Total') }}</th>
+                                <th>{{ $developers->sum('speed') }}</th>
+                                <th>{{ $developers->sum('tasks_sum_duration_for_developer') }}</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

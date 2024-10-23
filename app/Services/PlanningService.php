@@ -54,10 +54,11 @@ class PlanningService
         Sprint::truncate();
     }
 
-    private function assignTask(Task $task, Developer $developer)
+    private function assignTask(Task $task, Developer $developer, Sprint $sprint)
     {
         $task->developer_id = $developer->id;
-        $task->duration_for_developer = $task->difficulty * $task->estimated_duration / $developer->speed;
+        $task->duration_for_developer = $task->score / $developer->speed;
+        $task->sprint_id = $sprint->id;
         $task->save();
     }
 }
