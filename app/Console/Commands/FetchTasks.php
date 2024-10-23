@@ -2,25 +2,25 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\Provider;
 use App\Services\TaskFetchingManager;
+use Illuminate\Console\Command;
 
-class FetshTasks extends Command
+class FetchTasks extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'tasks:fetch {providerId}';
+    protected $signature = 'fetch-tasks';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'fetch tasks form provider ';
+    protected $description = 'Command description';
 
     /**
      * Execute the console command.
@@ -28,10 +28,9 @@ class FetshTasks extends Command
     public function handle()
     {
 
-        $providerId = $this->argument('providerId');
-        $provider = Provider::findOrFail($providerId);
-
-        $taskFetchingManager = new TaskFetchingManager($provider);
-        $taskFetchingManager->fetchTasks();
+        foreach (Provider::all() as $provider) {
+            $taskFetchingManager = new TaskFetchingManager($provider);
+            $taskFetchingManager->fetchTasks();
+        }
     }
 }

@@ -11,10 +11,8 @@ class TaskFetcherFactory
 
     public static function make(Provider $provider): TaskFetcherAbstract
     {
-
-        $fetcher =          $provider->getFetcher();
+        $fetcher = new $provider->fetcher_class;
 
         return $fetcher;
     }
-
 }

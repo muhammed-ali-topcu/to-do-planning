@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Developer;
-use App\Models\Provider;
-use App\Models\Task;
 
+use Illuminate\Support\Facades\Http;
 
 abstract class  TaskFetcherAbstract
 {
@@ -14,8 +12,23 @@ abstract class  TaskFetcherAbstract
     protected $propertyNameForEstimatedDuration;
     protected $propertyNameForDefficulty;
 
-    public abstract function execute():array;
 
+
+    public function  execute(): array
+    {
+        $response = Http::acceptJson()
+            ->get($this->endpoint);
+
+        // Handle response
+        $responseBody = $response->body();
+        if ($response->failed()) {
+            throw new \Exception("request failed");
+        }
+
+        $leedTasks = json_decode($responseBody, true);
+
+        return $this->formatTasks($leedTasks);
+    }
 
     protected function formatTasks($leedTasks): array
     {
