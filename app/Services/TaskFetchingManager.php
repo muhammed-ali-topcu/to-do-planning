@@ -16,17 +16,16 @@ class TaskFetchingManager
     public function __construct(Provider $provider)
     {
         $this->provider = $provider;
-        $this->taskFetcher = $this->provider->getFetcher();
+        $this->taskFetcher = TaskFetcherFactory::make($provider);
     }
-
 
 
     public function fetchTasks()
     {
-
         $tasks = $this->taskFetcher->execute();
         $this->saveTasks($tasks);
     }
+
     private function saveTasks($tasks)
     {
         foreach ($tasks as $task) {

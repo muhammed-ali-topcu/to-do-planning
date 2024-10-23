@@ -10,6 +10,12 @@ class Provider extends Model
 {
     protected $fillable = [
         'name',
+
+        'fetcher_class',
+        'key_for_custome_id',
+        'key_for_defficulty',
+        'key_for_estimated_duration',
+        'url',
     ];
 
     public function tasks()

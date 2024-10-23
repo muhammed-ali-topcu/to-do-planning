@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Provider;
+use App\Services\Provider1Fetcher;
 use Illuminate\Database\Seeder;
 
 class ProviderSeeder extends Seeder
@@ -12,14 +13,24 @@ class ProviderSeeder extends Seeder
      */
     public function run(): void
     {
-        $providers = [
-            ['name' => 'Provider-1'],
-            ['name' => 'Provider-2'],
+
+        $providersInfo = [
+            [
+                'name' => 'Provider-1',
+                'fetcher_class' => Provider1Fetcher::class,
+                'key_for_custome_id' => 'id',
+                'key_for_defficulty' => 'value',
+                'key_for_estimated_duration' => 'estimated_duration',
+                'url' => 'http://localhost/mocks/provider-1-tasks',
+
+
+            ],
+            //['name' => 'Provider-2'],
 
         ];
-        
-        foreach ($providers as $provider) {
-            Provider::create($provider);
+
+        foreach ($providersInfo as $providerInfo) {
+            Provider::create($providerInfo);
         }
     }
 }

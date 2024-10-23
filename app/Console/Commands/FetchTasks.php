@@ -20,7 +20,7 @@ class FetshTasks extends Command
      *
      * @var string
      */
-    protected $description = 'pull tasks form provider ';
+    protected $description = 'fetch tasks form provider ';
 
     /**
      * Execute the console command.

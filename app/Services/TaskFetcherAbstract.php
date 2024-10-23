@@ -10,7 +10,6 @@ use App\Models\Task;
 abstract class  TaskFetcherAbstract
 {
     protected $endpoint;
-    protected $httpMethod;
     protected $propertyNameForCustomId;
     protected $propertyNameForEstimatedDuration;
     protected $propertyNameForDefficulty;
