@@ -17,8 +17,8 @@ class Developer extends Model
     }
 
 
-    public function getAvailableScore()
+    public function getAvailableScore(Sprint $sprint)
     {
-        return (45 * $this->speed) - $this->tasks->sum('score');
+        return ($sprint->hours * $this->speed) - $this->tasks->sum('score');
     }
 }

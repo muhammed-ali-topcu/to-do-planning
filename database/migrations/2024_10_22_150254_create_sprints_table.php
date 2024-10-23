@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sprints', function (Blueprint $table) {
             $table->id();
+            $table->integer('hours')->default(45);
             $table->timestamps();
         });
     }

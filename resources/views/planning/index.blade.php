@@ -44,7 +44,7 @@
                             <th>{{ __('Id') }}</th>
                             <th>{{ __('Name') }}</th>
                             <th>{{ __('Speed') }}</th>
-                            <th>{{ __('') }}</th>
+                            <th>{{ __('Filled Hours') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,5 +60,30 @@
                     </table>
                 </div>
             </div>
+
+
+            <br/>
+            <div class="card">
+                <div class="card-header">{{ __('Sprints') }}</div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr></tr>
+                            <th>{{ __('Id') }}</th>
+                            <th>{{ __('Hours') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($sprints as $sprint)
+                                <tr>
+                                    <td>{{ $sprint->id }}</td>
+                                    <td>{{ $sprint->hours }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
     @endsection

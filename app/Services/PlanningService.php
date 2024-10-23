@@ -3,9 +3,8 @@
 namespace App\Services;
 
 use App\Models\Developer;
-use App\Models\Provider;
+use App\Models\Sprint;
 use App\Models\Task;
-use Illuminate\Support\Facades\DB;
 
 class PlanningService
 {
@@ -13,30 +12,34 @@ class PlanningService
 
     public function plan()
     {
-
-        $tasks = Task::query()
-            ->orderBy('score', 'desc')
-            ->get();
-
         $this->unassignAllTasks();
-        foreach ($tasks as $task) {
-            $developer = $this->findedAppropriateDeveloper($task);
 
-            if ($developer) {
-                $this->assignTask($task, $developer);
+        do {
+            $tasks = Task::query()
+                ->orderBy('score', 'desc')
+                ->unassigned()
+                ->get();
+            $sprint = Sprint::create(['hours' => self::WEEK_HOURS]);
+
+            foreach ($tasks as $task) {
+                $developer = $this->findedAppropriateDeveloper($task, $sprint);
+
+                if ($developer) {
+                    $this->assignTask($task, $developer, $sprint);
+                }
             }
-        }
+        } while (Task::query()->unassigned()->count() > 0);
 
         return $tasks;
     }
 
 
-    private function findedAppropriateDeveloper(Task $task): ?Developer
+    private function findedAppropriateDeveloper(Task $task, Sprint $sprint): ?Developer
     {
         $developers = Developer::with('tasks')->get();
 
-        $developers = $developers->map(function (Developer $developer) {
-            $developer->availlable_score = $developer->getAvailableScore();
+        $developers = $developers->map(function (Developer $developer) use ($sprint) {
+            $developer->availlable_score = $developer->getAvailableScore($sprint);
             return $developer;
         });
 
@@ -47,7 +50,8 @@ class PlanningService
 
     private function unassignAllTasks()
     {
-        Task::query()->update(['developer_id' => null, 'duration_for_developer' => null]);
+        Task::query()->update(['developer_id' => null, 'duration_for_developer' => null, 'sprint_id' => null]);
+        Sprint::truncate();
     }
 
     private function assignTask(Task $task, Developer $developer)

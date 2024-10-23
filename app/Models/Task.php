@@ -15,6 +15,7 @@ class Task extends Model
         'custome_id',
         'score',
         'duration_for_developer',
+        'sprint_id',
     ];
 
     public static function boot()
@@ -36,5 +37,14 @@ class Task extends Model
     public function provider()
     {
         return $this->belongsTo(Provider::class);
+    }
+
+    public function sprint()
+    {
+        return $this->belongsTo(Sprint::class);
+    }
+    public function scopeUnassigned($query)
+    {
+        return $query->where('developer_id', null);
     }
 }

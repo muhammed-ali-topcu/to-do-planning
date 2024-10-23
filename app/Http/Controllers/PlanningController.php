@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Developer;
+use App\Models\Sprint;
 use App\Models\Task;
 use App\Services\PlanningService;
 use Illuminate\Http\Request;
@@ -18,6 +19,8 @@ class PlanningController extends Controller
         $developers = Developer::with('tasks')
         ->withSum('tasks', 'duration_for_developer')
         ->get();
-        return view('planning.index',compact('tasks','developers'));
+
+        $sprints=Sprint::all();
+        return view('planning.index',compact('tasks','developers','sprints'));
     }
 }
