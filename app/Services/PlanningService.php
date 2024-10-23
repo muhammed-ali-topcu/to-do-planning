@@ -13,7 +13,7 @@ class PlanningService
 
     public function plan()
     {
-        $developers = Developer::orderBy('speed')->get();
+
         $tasks = Task::query()
             ->orderBy('score', 'desc')
             ->get();
@@ -30,12 +30,6 @@ class PlanningService
         return $tasks;
     }
 
-    private function assignTask(Task $task, Developer $developer)
-    {
-        $task->developer_id = $developer->id;
-        $task->duration_for_developer = $task->difficulty * $task->estimated_duration / $developer->speed;
-        $task->save();
-    }
 
     private function findedAppropriateDeveloper(Task $task): ?Developer
     {
@@ -54,5 +48,12 @@ class PlanningService
     private function unassignAllTasks()
     {
         Task::query()->update(['developer_id' => null, 'duration_for_developer' => null]);
+    }
+
+    private function assignTask(Task $task, Developer $developer)
+    {
+        $task->developer_id = $developer->id;
+        $task->duration_for_developer = $task->difficulty * $task->estimated_duration / $developer->speed;
+        $task->save();
     }
 }
