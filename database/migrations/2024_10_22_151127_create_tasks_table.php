@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('custome_id')->comment('id provided by provider');
             $table->foreignIdFor(Provider::class);
-            $table->integer('estimated_duration');
-            $table->integer('difficulty');
+            $table->float('estimated_duration');
+            $table->float('difficulty');
+            $table->float('score')->default(0)->comment('score = difficulty * estimated_duration');
             $table->foreignIdFor(Developer::class)->nullable();
+            $table->float('duration_for_developer')->default(0)->nullable();
             $table->timestamps();
         });
     }
