@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->string('custome_id')->comment('id provided by provider');
             $table->foreignIdFor(Provider::class);
             $table->integer('estimated_duration');
             $table->integer('difficulty');

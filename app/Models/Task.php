@@ -8,9 +8,10 @@ class Task extends Model
 {
     protected $fillable = [
         'estimated_duration',
-        'difficullty',
+        'difficulty',
         'developer_id',
         'provider_id',
+        'custome_id',
     ];
 
     public function developer()
