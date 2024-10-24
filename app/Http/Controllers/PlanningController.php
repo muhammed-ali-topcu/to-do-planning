@@ -26,6 +26,8 @@ class PlanningController extends Controller
     public function plan()
     {
         (new PlanningService())->plan();
+
+        return redirect()->back()->with(['message' => 'Planned successfully']);
         return redirect()->route('planning.index');
     }
 }

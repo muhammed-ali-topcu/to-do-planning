@@ -10,8 +10,6 @@
 
 
 
-
-
 ## notes
 
 - tasks will be fetched when running seed. in addicaion you can fetch tasks using `php artisan fetch-tasks`

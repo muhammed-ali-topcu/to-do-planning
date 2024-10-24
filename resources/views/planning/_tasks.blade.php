@@ -19,8 +19,8 @@
                 <th>{{ __('Difficulty') }}</th>
                 <th>{{ __('Estimated Duration') }}</th>
                 <th>{{ __('Score') }}</th>
-                <th>{{ __('Sprint Id') }}</th>
-                <th>{{ __('Developer Id') }}</th>
+                <th>{{ __('Sprint') }}</th>
+                <th>{{ __('Developer') }}</th>
                 <th>{{ __('Duration For Developer') }}</th>
                 </tr>
             </thead>
@@ -33,7 +33,7 @@
                         <td>{{ $task->estimated_duration }}</td>
                         <td>{{ $task->score }}</td>
                         <td>{{ $task->sprint_id }}</td>
-                        <td>{{ $task->developer_id }}</td>
+                        <td>{{ $task->developer?->name }}</td>
                         <td>{{ $task->duration_for_developer }}</td>
                     </tr>
                 @endforeach

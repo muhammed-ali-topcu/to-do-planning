@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(ProviderSeeder::class);
         $this->call(DeveloperSeeder::class);
-     //   Artisan::call('fetch-tasks');
+        Artisan::call('fetch-tasks');
     }
 }

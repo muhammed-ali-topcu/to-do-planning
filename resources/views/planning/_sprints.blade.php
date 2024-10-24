@@ -1,32 +1,41 @@
-<div class="card">
-    <div class="card-header">{{ __('Result') }}</div>
-    <div class="card-body">
-        <h4>{{ __('All tasks need :weeks weeks to be completed', ['weeks' => $sprints->count()]) }} </h4>
+@if (count($sprints) > 0)
+
+
+    <div class="card">
+        <div class="card-header">{{ __('Result') }}</div>
+        <div class="card-body">
+            <h4>{{ __('All tasks need :weeks weeks to be completed', ['weeks' => $sprints->count()]) }} </h4>
+        </div>
     </div>
-</div>
-<br>
+    <br>
 
-<div class="card">
-    <div class="card-header">{{ __('Sprints') }}</div>
+    <div class="card">
+        <div class="card-header">{{ __('Sprints') }}</div>
+        <div class="card-body">
+            @foreach ($sprints as $sprint)
+                <h4>Sprint {{ $sprint->id }}:</h4>
 
-    <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>{{ __('Developer') }}</th>
+                            <th>{{ __('Filled Hours') }}</th>
+                        </tr>
+                    </thead>
 
-        <table class="table">
-            <thead>
-                <tr></tr>
-                <th>{{ __('Id') }}</th>
-                <th>{{ __('Hours') }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($sprints as $sprint)
-                    <tr>
-                        <td>{{ $sprint->id }}</td>
-                        <td>{{ $sprint->hours }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                    <tbody>
+                        @foreach ($developers as $developer)
+                            <tr>
+                                <td>{{ $developer->name }}</td>
+                                <td>{{ $developer->tasks()->where('sprint_id', $sprint->id)->sum('duration_for_developer') }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <br>
+            @endforeach
+
+        </div>
     </div>
-</div>
-
+@endif
