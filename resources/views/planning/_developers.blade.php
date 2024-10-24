@@ -7,7 +7,7 @@
                 <th>{{ __('Id') }}</th>
                 <th>{{ __('Name') }}</th>
                 <th>{{ __('Speed') }}</th>
-                <th>{{ __('Filled Hours') }}</th>
+                <th>{{ __('Total Filled Hours') }}</th>
                 </tr>
             </thead>
             <tbody>

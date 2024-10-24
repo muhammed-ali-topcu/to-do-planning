@@ -77,15 +77,33 @@ class MockController extends Controller
             ],
 
             [
-                "id" => 12,
+                "id" => 14,
                 "value" => 5,
                 "estimated_duration" => 1
             ],
 
             [
-                "id" => 12,
+                "id" => 15,
                 "value" => 4,
-                "estimated_duration" => 13
+                "estimated_duration" => 19
+            ],
+
+            [
+                "id" => 16,
+                "value" => 3,
+                "estimated_duration" => 1
+            ],
+
+            [
+                "id" => 17,
+                "value" => 2,
+                "estimated_duration" => 5
+            ],
+
+            [
+                "id" => 18,
+                "value" => 2,
+                "estimated_duration" => 10
             ],
 
 
@@ -136,7 +154,34 @@ class MockController extends Controller
                 "id" => 8,
                 "zorluk" => 1,
                 "sure" => 3
-            ]
+            ],
+
+            [
+                "id" => 9,
+                "zorluk" => 1,
+                "sure" => 3
+            ],
+            [
+                "id" => 10,
+                "zorluk" => 4,
+                "sure" => 10
+            ],
+            [
+                "id" => 11,
+                "zorluk" => 1,
+                "sure" => 25
+            ],
+            [
+                "id" => 12,
+                "zorluk" => 3,
+                "sure" => 30
+            ],
+             [
+                "id" => 13,
+                "zorluk" => 5,
+                "sure" => 40
+            ],
+
         ];
 
         return response()->json($data);

@@ -1,7 +1,16 @@
-
 <div class="card">
-    <div class="card-header">{{ __('Tasks') }}</div>
+    <div class="card-header d-flex justify-content-between">
+
+        <div>{{ __('Tasks') }}</div>
+
+        <form method="POST" action="{{ route('planning.plan') }}">
+            @csrf
+            <button type="submit" class="btn btn-primary">{{ __('Plan') }}</button>
+        </form>
+    </div>
+
     <div class="card-body">
+
         <table class="table">
             <thead>
                 <tr></tr>

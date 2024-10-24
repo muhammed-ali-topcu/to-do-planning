@@ -20,17 +20,19 @@ class FetchTasks extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'fetch tasks for all providers';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-
         foreach (Provider::all() as $provider) {
+            $this->info("Fetching tasks for provider: " . $provider->name);
             $taskFetchingManager = new TaskFetchingManager($provider);
             $taskFetchingManager->fetchTasks();
+            $this->info("Finished fetching tasks for provider: " . $provider->name);
         }
+        $this->info("Finished fetching all tasks");
     }
 }
