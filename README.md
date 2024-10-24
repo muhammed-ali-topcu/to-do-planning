@@ -1,8 +1,9 @@
 # To do planning web applicaiton
 
-## instalation 
+## Installation 
 
-- after cloning 
+- clone `git clone https://github.com/muhammed-ali-topcu/to-do-planning.git`
+- go to folder `cd to-do-planning`
 - copy .env.example `cp .env.example .env`
 - run `composer install`
 - generate applicaitno key `php artisan key:generate`
@@ -10,7 +11,7 @@
 
 
 
-## notes
+## Notes
 
 - tasks will be fetched when running seed. in addicaion you can fetch tasks using `php artisan fetch-tasks`
 
