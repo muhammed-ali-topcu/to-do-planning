@@ -29,8 +29,6 @@ class PlanningService
                 }
             }
         } while (Task::query()->unassigned()->count() > 0);
-
-        return $tasks;
     }
 
 
@@ -42,7 +40,6 @@ class PlanningService
             $developer->availlable_score = $developer->getAvailableScore($sprint);
             return $developer;
         });
-
 
         return $developers->where('availlable_score', '>=', $task->score)
             ->sortBy('availlable_score')->first();

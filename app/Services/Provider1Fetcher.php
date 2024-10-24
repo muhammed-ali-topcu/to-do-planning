@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Http;
-
 
 class Provider1Fetcher extends TaskFetcherAbstract
 {

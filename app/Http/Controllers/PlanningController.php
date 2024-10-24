@@ -6,13 +6,12 @@ use App\Models\Developer;
 use App\Models\Sprint;
 use App\Models\Task;
 use App\Services\PlanningService;
-use Illuminate\Http\Request;
+
 
 class PlanningController extends Controller
 {
     public function index()
     {
-        //(new PlanningService())->plan();
 
         $tasks = Task::with('developer')->with('developer')->get();
 
@@ -26,8 +25,6 @@ class PlanningController extends Controller
     public function plan()
     {
         (new PlanningService())->plan();
-
-        return redirect()->back()->with(['message' => 'Planned successfully']);
-        return redirect()->route('planning.index');
+        return redirect()->back()->with(['message' => __('Planned successfully')]);
     }
 }
